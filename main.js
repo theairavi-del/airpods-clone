@@ -28,18 +28,49 @@ for (let i = 0; i < frameCount; i++) {
   };
 }
 
+// SCROLL OBSERVER for EarGear Story
+const scrollSteps = document.querySelectorAll(".scroll-step");
+const eargearImages = document.querySelectorAll(".eargear-img");
+
+const observerOptions = {
+  root: null,
+  rootMargin: "-40% 0px -40% 0px", // Trigger when text is centered
+  threshold: 0
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = entry.target.getAttribute("data-index");
+      
+      // Update text opacity
+      scrollSteps.forEach(step => step.classList.remove("active"));
+      entry.target.classList.add("active");
+      
+      // Crossfade the sticky image
+      eargearImages.forEach(img => img.classList.remove("active"));
+      const targetImg = document.getElementById(`eg-img-${index}`);
+      if (targetImg) {
+        targetImg.classList.add("active");
+      }
+    }
+  });
+}, observerOptions);
+
+scrollSteps.forEach(step => {
+  observer.observe(step);
+});
+
+// MAIN SCROLL EVENT
 window.addEventListener("scroll", () => {
-  // Calculate progress purely within the hero section
+  // Hero section scroll calculation
   const html = document.documentElement;
   const scrollTop = html.scrollTop;
   
   const heroTop = heroSection.offsetTop;
   const heroHeight = heroSection.offsetHeight;
   
-  // Total scrollable distance within the hero section (leaving 1vh for the sticky frame itself)
   const maxHeroScroll = heroHeight - window.innerHeight;
-  
-  // Prevent negative progress and cap it at 1 (100%)
   let scrollFraction = (scrollTop - heroTop) / maxHeroScroll;
   scrollFraction = Math.max(0, Math.min(1, scrollFraction));
   
@@ -50,7 +81,7 @@ window.addEventListener("scroll", () => {
   
   requestAnimationFrame(() => updateImage(frameIndex));
   
-  // Trigger text fade-in at 80% scroll of the hero section
+  // Fade hero text near the end of the hero sequence
   if (scrollFraction > 0.8) {
     overlayText.classList.add("visible");
   } else {

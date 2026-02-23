@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AirPods Pro - Magic Like You've Never Heard</title>
+  <title>AirPods Pro & EarGear</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,71 +12,68 @@
     <div class="nav-content">
       <div class="logo">EarGear</div>
       <div class="nav-links">
-        <a href="#hero">Overview</a>
-        <a href="#gallery">Features</a>
+        <a href="#hero">AirPods Pro</a>
+        <a href="#eargear-story">The Case</a>
       </div>
       <button class="buy-button nav-buy">Buy</button>
     </div>
   </nav>
 
+  <!-- Original AirPods Pro Sequence -->
   <section id="hero" class="hero-section">
     <div class="sticky-container">
       <canvas id="airpods-canvas"></canvas>
       <div class="overlay-text">
-        <h1>EarGear Pro</h1>
+        <h1>AirPods Pro</h1>
         <p>Magic like you've never heard.</p>
       </div>
     </div>
   </section>
 
-  <section id="gallery" class="gallery-section">
-    
-    <div class="gallery-item">
-      <div class="gallery-text">
-        <h2>Unmatched Clarity.</h2>
-        <p>Experience high-fidelity audio engineered for the perfect soundscape, whether you're commuting, working out, or relaxing.</p>
-      </div>
-      <img src="eargear/1.jpeg" alt="EarGear Feature 1" loading="lazy">
+  <!-- EarGear Dynamic Scroll Section -->
+  <section id="eargear-story" class="eargear-section">
+    <div class="eargear-sticky">
+      <!-- Images that crossfade based on scroll -->
+      <img src="eargear/1.png" class="eargear-img active" id="eg-img-1" alt="EarGear Closed Case">
+      <img src="eargear/2.png" class="eargear-img" id="eg-img-2" alt="EarGear Open">
+      <img src="eargear/3.png" class="eargear-img" id="eg-img-3" alt="Ear attachments">
+      <img src="eargear/4.png" class="eargear-img" id="eg-img-4" alt="Running gear">
+      <img src="eargear/5.png" class="eargear-img" id="eg-img-5" alt="Action ready">
     </div>
 
-    <div class="gallery-item reverse">
-      <div class="gallery-text">
-        <h2>All-Day Comfort.</h2>
-        <p>Designed with a refined ergonomic fit, EarGear molds to your ear for secure, pressure-free listening from dawn to dusk.</p>
+    <!-- The text that scrolls over the sticky side -->
+    <div class="eargear-content">
+      <div class="scroll-step" data-index="1">
+        <h2>The Ultimate Case.</h2>
+        <p>More than just protection. EarGear is an AirPods Pro case built to house the buds and something extra.</p>
       </div>
-      <img src="eargear/2.jpeg" alt="EarGear Feature 2" loading="lazy">
-    </div>
-
-    <div class="gallery-item">
-      <div class="gallery-text">
-        <h2>Adaptive Noise Control.</h2>
-        <p>Block out the noise or let the world in. Active Noise Cancellation and Transparency modes adapt dynamically to your environment.</p>
+      
+      <div class="scroll-step" data-index="2">
+        <h2>Built for Action.</h2>
+        <p>Integrated directly into the shell, EarGear holds specialized ear attachments designed specifically for high-intensity movement.</p>
       </div>
-      <img src="eargear/3.jpeg" alt="EarGear Feature 3" loading="lazy">
-    </div>
-
-    <div class="gallery-item reverse">
-      <div class="gallery-text">
-        <h2>Seamless Connection.</h2>
-        <p>Powered by the next-gen chip for instant pairing, multipoint connectivity, and extended battery life.</p>
+      
+      <div class="scroll-step" data-index="3">
+        <h2>Never Drop Them Again.</h2>
+        <p>Running, sprinting, or jumping—the ergonomic hooks lock onto your AirPods, securing them flawlessly to your ear shape.</p>
       </div>
-      <img src="eargear/4.jpeg" alt="EarGear Feature 4" loading="lazy">
-    </div>
-
-    <div class="gallery-item center-align">
-      <div class="gallery-text">
-        <h2>Ready for Everything.</h2>
-        <p>Sweat and water resistant, housed in a premium wireless charging case.</p>
+      
+      <div class="scroll-step" data-index="4">
+        <h2>Seamless Integration.</h2>
+        <p>The attachments snap right onto your AirPods Pro in seconds. When you're done, they magnetically dock back inside the case.</p>
       </div>
-      <img src="eargear/5.jpeg" alt="EarGear Feature 5" loading="lazy">
+      
+      <div class="scroll-step" data-index="5">
+        <h2>Ready to Run.</h2>
+        <p>Sweat-proof, durable, and pocket-friendly. Keep your music flowing and your AirPods secured, no matter the pace.</p>
+      </div>
     </div>
-
   </section>
 
   <footer class="buy-section">
-    <h2>Hear the difference.</h2>
-    <p>Upgrade your audio experience today.</p>
-    <button class="buy-button large-buy">Buy Now - $249</button>
+    <h2>Secure Your Sound.</h2>
+    <p>Get the EarGear Case today.</p>
+    <button class="buy-button large-buy">Buy Now - $49</button>
   </footer>
 
   <script src="main.js"></script>
