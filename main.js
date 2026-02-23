@@ -52,18 +52,18 @@ window.addEventListener("scroll", () => {
   // 1-IMAGE MAGIC MATH
   requestAnimationFrame(() => {
     if (heroImg && glare) {
-      // 1. Camera Zoom out (starts big, scales to 1.0)
-      const scale = 1.8 - (scrollFraction * 0.8);
+      // 1. Camera Zoom out (starts slightly zoomed, scales to 1.0)
+      const scale = 1.3 - (scrollFraction * 0.3);
       
       // 2. Camera Blur (starts blurry, focuses to 0px)
-      const blur = Math.max(0, 20 - (scrollFraction * 40));
+      const blur = Math.max(0, 10 - (scrollFraction * 20));
       
-      // 3. Fade in from shadows (starts 0 opacity, reaches 1 quickly)
-      const opacity = Math.min(1, scrollFraction * 4);
+      // 3. Brightness fade in from shadows
+      const brightness = 0.5 + (scrollFraction * 0.5);
       
       // Apply transforms
       heroImg.style.transform = `scale(${scale})`;
-      heroImg.style.filter = `blur(${blur}px) opacity(${opacity})`;
+      heroImg.style.filter = `blur(${blur}px) brightness(${brightness})`;
       
       // 4. Studio Light Sweep
       // Glare moves from left to right diagonally
