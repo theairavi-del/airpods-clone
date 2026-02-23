@@ -74,13 +74,12 @@ window.addEventListener("scroll", () => {
         // 2. Camera Blur
         const blur = Math.max(0, 10 - (caseProgress * 20));
         
-        // 3. Brightness & Opacity fade in
-        const brightness = 0.5 + (caseProgress * 0.5);
+        // 3. Opacity fade in
         const opacity = Math.min(1, caseProgress * 3); // fades in fast
         
         // Apply transforms
         heroImg.style.transform = `scale(${scale})`;
-        heroImg.style.filter = `blur(${blur}px) brightness(${brightness})`;
+        heroImg.style.filter = `blur(${blur}px)`;
         heroImg.style.opacity = opacity;
         glare.style.opacity = 1;
         
