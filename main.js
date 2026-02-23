@@ -1,32 +1,7 @@
-const canvas = document.getElementById("airpods-canvas");
-const context = canvas.getContext("2d");
+const heroImg = document.querySelector(".hero-img");
+const glare = document.querySelector(".glare");
 const overlayText = document.querySelector(".overlay-text");
 const heroSection = document.getElementById("hero");
-
-canvas.width = 1158;
-canvas.height = 770;
-
-const frameCount = 148;
-// Apple's public image sequence for AirPods Pro
-const currentFrame = index => (
-  `https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/${(index + 1).toString().padStart(4, '0')}.jpg`
-);
-
-const images = [];
-let loadedCount = 0;
-
-for (let i = 0; i < frameCount; i++) {
-  const img = new Image();
-  img.src = currentFrame(i);
-  images.push(img);
-  
-  img.onload = () => {
-    loadedCount++;
-    if (i === 0) {
-      context.drawImage(images[0], 0, 0);
-    }
-  };
-}
 
 // SCROLL OBSERVER for EarGear Story
 const scrollSteps = document.querySelectorAll(".scroll-step");
@@ -74,24 +49,38 @@ window.addEventListener("scroll", () => {
   let scrollFraction = (scrollTop - heroTop) / maxHeroScroll;
   scrollFraction = Math.max(0, Math.min(1, scrollFraction));
   
-  const frameIndex = Math.min(
-    frameCount - 1,
-    Math.ceil(scrollFraction * frameCount)
-  );
-  
-  requestAnimationFrame(() => updateImage(frameIndex));
+  // 1-IMAGE MAGIC MATH
+  requestAnimationFrame(() => {
+    if (heroImg && glare) {
+      // 1. Camera Zoom out (starts big, scales to 1.0)
+      const scale = 1.8 - (scrollFraction * 0.8);
+      
+      // 2. Camera Blur (starts blurry, focuses to 0px)
+      const blur = Math.max(0, 20 - (scrollFraction * 40));
+      
+      // 3. Fade in from shadows (starts 0 opacity, reaches 1 quickly)
+      const opacity = Math.min(1, scrollFraction * 4);
+      
+      // Apply transforms
+      heroImg.style.transform = `scale(${scale})`;
+      heroImg.style.filter = `blur(${blur}px) opacity(${opacity})`;
+      
+      // 4. Studio Light Sweep
+      // Glare moves from left to right diagonally
+      const glarePos = -100 + (scrollFraction * 200);
+      
+      // Glare opacity peaks in the middle of the scroll
+      const glareOpacity = Math.max(0, Math.sin(scrollFraction * Math.PI) * 0.9);
+      
+      glare.style.transform = `translateX(${glarePos}%)`;
+      glare.style.background = `linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, ${glareOpacity}) 48%, rgba(255, 255, 255, ${glareOpacity}) 52%, transparent 60%)`;
+    }
+  });
   
   // Fade hero text near the end of the hero sequence
-  if (scrollFraction > 0.8) {
+  if (scrollFraction > 0.6) {
     overlayText.classList.add("visible");
   } else {
     overlayText.classList.remove("visible");
   }
 });
-
-function updateImage(index) {
-  if (images[index]) {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(images[index], 0, 0);
-  }
-}
