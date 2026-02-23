@@ -1,6 +1,6 @@
 const heroImg = document.querySelector(".hero-img");
 const glare = document.querySelector(".glare");
-const overlayText = document.querySelector(".overlay-text");
+const introScreen = document.getElementById("intro-screen");
 const heroSection = document.getElementById("hero");
 
 // SCROLL OBSERVER for EarGear Story
@@ -51,36 +51,46 @@ window.addEventListener("scroll", () => {
   
   // 1-IMAGE MAGIC MATH
   requestAnimationFrame(() => {
+    // Stage 1: Intro Text Fade Out (0% to 20% scroll)
+    if (introScreen) {
+      const introOpacity = Math.max(0, 1 - (scrollFraction * 5));
+      const introY = scrollFraction * 150; // text slightly moves up
+      introScreen.style.opacity = introOpacity;
+      introScreen.style.transform = `translate(-50%, calc(-50% - ${introY}px))`;
+    }
+
     if (heroImg && glare) {
-      // 1. Camera Zoom out (starts slightly zoomed, scales to 1.0)
-      const scale = 1.3 - (scrollFraction * 0.3);
-      
-      // 2. Camera Blur (starts blurry, focuses to 0px)
-      const blur = Math.max(0, 10 - (scrollFraction * 20));
-      
-      // 3. Brightness fade in from shadows
-      const brightness = 0.5 + (scrollFraction * 0.5);
-      
-      // Apply transforms
-      heroImg.style.transform = `scale(${scale})`;
-      heroImg.style.filter = `blur(${blur}px) brightness(${brightness})`;
-      
-      // 4. Studio Light Sweep
-      // Glare moves from left to right diagonally
-      const glarePos = -100 + (scrollFraction * 200);
-      
-      // Glare opacity peaks in the middle of the scroll
-      const glareOpacity = Math.max(0, Math.sin(scrollFraction * Math.PI) * 0.9);
-      
-      glare.style.transform = `translateX(${glarePos}%)`;
-      glare.style.background = `linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, ${glareOpacity}) 48%, rgba(255, 255, 255, ${glareOpacity}) 52%, transparent 60%)`;
+      // Stage 2: Case appears and light sweeps (20% to 100% scroll)
+      let caseProgress = (scrollFraction - 0.2) / 0.8;
+      caseProgress = Math.max(0, Math.min(1, caseProgress));
+
+      if (scrollFraction < 0.2) {
+        heroImg.style.opacity = 0;
+        glare.style.opacity = 0;
+      } else {
+        // 1. Camera Zoom out
+        const scale = 1.3 - (caseProgress * 0.3);
+        
+        // 2. Camera Blur
+        const blur = Math.max(0, 10 - (caseProgress * 20));
+        
+        // 3. Brightness & Opacity fade in
+        const brightness = 0.5 + (caseProgress * 0.5);
+        const opacity = Math.min(1, caseProgress * 3); // fades in fast
+        
+        // Apply transforms
+        heroImg.style.transform = `scale(${scale})`;
+        heroImg.style.filter = `blur(${blur}px) brightness(${brightness})`;
+        heroImg.style.opacity = opacity;
+        glare.style.opacity = 1;
+        
+        // 4. Studio Light Sweep
+        const glarePos = -100 + (caseProgress * 200);
+        const glareOpacity = Math.max(0, Math.sin(caseProgress * Math.PI) * 0.9);
+        
+        glare.style.transform = `translateX(${glarePos}%)`;
+        glare.style.background = `linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, ${glareOpacity}) 48%, rgba(255, 255, 255, ${glareOpacity}) 52%, transparent 60%)`;
+      }
     }
   });
-  
-  // Fade hero text near the end of the hero sequence
-  if (scrollFraction > 0.6) {
-    overlayText.classList.add("visible");
-  } else {
-    overlayText.classList.remove("visible");
-  }
 });

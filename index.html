@@ -15,7 +15,9 @@
         <a href="#hero">Overview</a>
         <a href="#eargear-story">The Case</a>
       </div>
-      <button class="buy-button nav-buy">Buy</button>
+      <div class="nav-buy-container">
+        <button class="buy-button">Buy</button>
+      </div>
     </div>
   </nav>
 
@@ -23,17 +25,23 @@
   <section id="hero" class="hero-section">
     <div class="sticky-container">
       
+      <!-- Intro White Screen Text (Fades out) -->
+      <div class="intro-screen" id="intro-screen">
+        <h1>EarGear Pro</h1>
+        <p>The ultimate setup for your AirPods.</p>
+        <div class="scroll-indicator">
+          <span>Scroll</span>
+          <div class="arrow-down"></div>
+        </div>
+      </div>
+
       <div class="single-image-wrapper">
         <!-- We use 1 single image instead of 148 -->
         <img src="eargear/1.jpeg" alt="EarGear Pro" class="hero-img">
         <!-- The simulated studio light -->
         <div class="glare"></div>
       </div>
-
-      <div class="overlay-text">
-        <h1>EarGear Pro</h1>
-        <p>The ultimate setup.</p>
-      </div>
+      
     </div>
   </section>
 
