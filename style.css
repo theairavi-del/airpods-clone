@@ -271,6 +271,7 @@ body {
 .buy-section h2 {
   font-size: 3rem;
   margin: 0 0 10px 0;
+  color: #fff;
 }
 
 .buy-section p {
@@ -280,9 +281,22 @@ body {
 }
 
 .large-buy {
+  background: #fff;
+  color: #000;
   padding: 15px 40px;
   font-size: 1.2rem;
   border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.large-buy:hover {
+  background: #ddd;
+}
+.large-buy:active {
+  transform: scale(0.95);
 }
 
 /* MOBILE RESPONSIVE */
