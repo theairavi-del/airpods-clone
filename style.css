@@ -4,7 +4,69 @@ body {
   background-color: #000;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  height: 500vh; /* Make the page highly scrollable */
+  overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  color: #a1a1a6;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+.buy-button {
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.buy-button:active {
+  transform: scale(0.95);
+}
+
+.buy-button:hover {
+  background: #ddd;
+}
+
+/* HERO SECTION */
+.hero-section {
+  height: 400vh; /* creates scroll room */
+  position: relative;
 }
 
 .sticky-container {
@@ -43,7 +105,7 @@ canvas {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: -0.02em;
   margin: 0;
   background: linear-gradient(180deg, #fff 0%, #a1a1a6 100%);
@@ -51,8 +113,112 @@ h1 {
   -webkit-text-fill-color: transparent;
 }
 
-p {
-  font-size: 1.5rem;
+.hero-section p {
+  font-size: 1.2rem;
   color: #a1a1a6;
   margin-top: 10px;
+}
+
+/* GALLERY SECTION */
+.gallery-section {
+  padding: 100px 20px;
+  background-color: #000;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 150px;
+}
+
+.gallery-item.reverse {
+  flex-direction: row-reverse;
+}
+
+.gallery-item.center-align {
+  flex-direction: column;
+  text-align: center;
+}
+
+.gallery-item img {
+  max-width: 50%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.gallery-item.center-align img {
+  max-width: 80%;
+}
+
+.gallery-text {
+  flex: 1;
+}
+
+.gallery-text h2 {
+  font-size: 3rem;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.02em;
+}
+
+.gallery-text p {
+  font-size: 1.2rem;
+  color: #a1a1a6;
+  line-height: 1.6;
+}
+
+/* FOOTER BUY SECTION */
+.buy-section {
+  text-align: center;
+  padding: 100px 20px;
+  background: #111;
+  border-top: 1px solid #333;
+}
+
+.buy-section h2 {
+  font-size: 3rem;
+  margin: 0 0 10px 0;
+}
+
+.buy-section p {
+  font-size: 1.2rem;
+  color: #a1a1a6;
+  margin-bottom: 40px;
+}
+
+.large-buy {
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  .hero-section p { font-size: 1rem; }
+  
+  .gallery-item, .gallery-item.reverse {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    margin-bottom: 80px;
+  }
+  
+  .gallery-item img, .gallery-item.center-align img {
+    max-width: 100%;
+  }
+
+  .gallery-text h2 {
+    font-size: 2rem;
+  }
+  
+  .buy-section h2 {
+    font-size: 2rem;
+  }
+  
+  .nav-links {
+    display: none; /* Hide on mobile to keep it clean, or could use hamburger menu */
+  }
 }

@@ -7,15 +7,78 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="space-maker"></div>
-  <div class="sticky-container">
-    <canvas id="airpods-canvas"></canvas>
-    <div class="overlay-text">
-      <h1>AirPods Pro</h1>
-      <p>Magic like you've never heard.</p>
+  
+  <nav class="navbar">
+    <div class="nav-content">
+      <div class="logo">EarGear</div>
+      <div class="nav-links">
+        <a href="#hero">Overview</a>
+        <a href="#gallery">Features</a>
+      </div>
+      <button class="buy-button nav-buy">Buy</button>
     </div>
-  </div>
-  <div class="space-maker"></div>
+  </nav>
+
+  <section id="hero" class="hero-section">
+    <div class="sticky-container">
+      <canvas id="airpods-canvas"></canvas>
+      <div class="overlay-text">
+        <h1>EarGear Pro</h1>
+        <p>Magic like you've never heard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery-section">
+    
+    <div class="gallery-item">
+      <div class="gallery-text">
+        <h2>Unmatched Clarity.</h2>
+        <p>Experience high-fidelity audio engineered for the perfect soundscape, whether you're commuting, working out, or relaxing.</p>
+      </div>
+      <img src="eargear/1.jpeg" alt="EarGear Feature 1" loading="lazy">
+    </div>
+
+    <div class="gallery-item reverse">
+      <div class="gallery-text">
+        <h2>All-Day Comfort.</h2>
+        <p>Designed with a refined ergonomic fit, EarGear molds to your ear for secure, pressure-free listening from dawn to dusk.</p>
+      </div>
+      <img src="eargear/2.jpeg" alt="EarGear Feature 2" loading="lazy">
+    </div>
+
+    <div class="gallery-item">
+      <div class="gallery-text">
+        <h2>Adaptive Noise Control.</h2>
+        <p>Block out the noise or let the world in. Active Noise Cancellation and Transparency modes adapt dynamically to your environment.</p>
+      </div>
+      <img src="eargear/3.jpeg" alt="EarGear Feature 3" loading="lazy">
+    </div>
+
+    <div class="gallery-item reverse">
+      <div class="gallery-text">
+        <h2>Seamless Connection.</h2>
+        <p>Powered by the next-gen chip for instant pairing, multipoint connectivity, and extended battery life.</p>
+      </div>
+      <img src="eargear/4.jpeg" alt="EarGear Feature 4" loading="lazy">
+    </div>
+
+    <div class="gallery-item center-align">
+      <div class="gallery-text">
+        <h2>Ready for Everything.</h2>
+        <p>Sweat and water resistant, housed in a premium wireless charging case.</p>
+      </div>
+      <img src="eargear/5.jpeg" alt="EarGear Feature 5" loading="lazy">
+    </div>
+
+  </section>
+
+  <footer class="buy-section">
+    <h2>Hear the difference.</h2>
+    <p>Upgrade your audio experience today.</p>
+    <button class="buy-button large-buy">Buy Now - $249</button>
+  </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
